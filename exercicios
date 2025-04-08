@@ -1,0 +1,97 @@
+public class Ingresso{
+    floar valor;
+
+    public Ingresso(float valor){
+        this.valor = valor;
+    }
+
+    toString(){
+        return "Valor do ingresso: R$" + valor;
+    }
+}
+
+public class IngressoVIP extends Ingresso{
+    float valorAdicional;
+
+    public IngressoVIP(float valor, float valorAdicional){
+        super(valor);
+        this.valorAdicional = valorAdicional;
+    }
+
+    @Override
+    public String toString(){
+        return super.toString() + "\nValor adicional: R$" + valorAdicional;
+    }
+}
+
+// Testando as classes
+public class Main{
+    public static void main(String[] args){
+        Ingresso ingresso = new Ingresso(50.0f);
+        IngressoVIP ingressoVIP = new IngressoVIP(50.0f, 20.0f);
+
+        System.out.println(ingresso.toString());
+        System.out.println(ingressoVIP.toString());
+    }
+}
+
+public class Gerente{
+    String departamento;
+}
+
+public class Empregado{
+    String nome;
+    float salario;
+}
+
+public class Vendedor extends Empregado{
+    float comissao;
+}
+
+public class Musica{
+    String nome;
+    String artista;
+    int duracao; // em segundos
+
+    public Musica(String nome, String artista, int duracao){
+        this.nome = nome;
+        this.artista = artista;
+        this.duracao = duracao;
+    }
+
+    @Override
+    public String toString(){
+        return "Nome: " + nome + "\nArtista: " + artista + "\nDuração: " + duracao + " segundos";
+    }
+}
+
+public class Compositor{
+    String nome;
+    String nacionalidade;
+    int idade;
+
+    public Compositor(String nome, String nacionalidade, int idade){
+        this.nome = nome;
+        this.nacionalidade = nacionalidade;
+        this.idade = idade;
+    }
+
+    @Override
+    public String toString(){
+        return "Nome: " + nome + "\nNacionalidade: " + nacionalidade + "\nIdade: " + idade + " anos";
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Musica m = new Musica("Legião Urbana", 1993, "Rock");
+        Compositores c = new Compositores("Erasmo Carlos", "Brasileiro");
+        // ArrayList<Compositores> compositores = new ArrayList<>();
+        m.setCompositores(c);
+
+        Musica m1 = new Musica("Erasmo Carlos", 2023, "Rock");
+        Compositores c1 = new Compositores("Renato Russo", "Brasileiro");
+        System.out.println("Musica: " + m.getNome() + ", Ano: " + m.getAno() + ", Tipo: " + m.getTipo());
+        System.out.println("Compositor: " + c.getNome() + ", Nacionalidade: " + c.getNacionalidade());
+    }
+}

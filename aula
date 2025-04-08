@@ -1,0 +1,492 @@
+Associacao e Heranca
+
+boolean igual (Produto p1){
+    if(this.nome.equals(p1.nome) && this.preco == p1.preco){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+p.igual(p2); // true ou false
+
+no array string tem como percorrer a string com o for
+for(int i = 0; i < array.length; i++){
+    System.out.println(array[i]);
+}
+
+variaveis de instancia e variaveis de classe
+
+static int contador = 0; // variavel de classe
+int contador = 0; // variavel de instancia
+
+public class Produto{
+    static int contador = 0; // variavel de classe
+    int codigo; // variavel de instancia
+    String nome; // variavel de instancia
+    String tipo; // variavel de instancia
+    int quantidade; // variavel de instancia
+    double preco; // variavel de instancia
+
+    //variavel static é compartilhada entre todas as instancias da classe, enquanto a variavel de instancia é unica para cada instancia da classe.
+    
+    Produto(String nome, String tipo, int quantidade, double preco){
+        this.nome = nome;
+        this.tipo = tipo;
+        this.quantidade = quantidade;
+        this.preco = preco;
+        contador++;
+    }
+
+
+
+    Produto p2 = new Produto("Produto 2", "Tipo 2", 20, 200.0);
+    p2.nome = JOptionPane.showInputDialog("Digite o nome do produto: ");
+
+
+Associacao entre Objetos - Heranca
+    atributos e metodos de uma classe podem ser herdados por outra classe, ou seja, a classe filha herda os atributos e metodos da classe pai.
+
+    Alunos que herdam de Curso
+
+    class Curso{
+        String nome;
+        String tipo;
+        int cargaHoraria;
+        double preco;
+    }
+
+    class Aluno extends Curso{
+        String nome;
+        String cpf;
+        String rg;
+        String endereco;
+        String telefone;
+    }
+
+    Automovel que herda de Veiculo
+    Automovel{
+
+        String modelo;
+        String cor;
+        String placa;
+        int ano;
+    }
+
+    Veiculo{
+        String marca;
+        String tipo;
+        String combustivel;
+        int ano;
+    }
+
+    Generalizacao
+    Filtro{
+        String tipo;
+        String cor;
+        String marca;
+    }
+
+    Depedencia entre objetos
+    Carro{
+        String modelo;
+        String cor;
+        String placa;
+        int ano;
+    }
+
+    Associacao entre objetos
+
+    Cliente{
+        String nome;
+        String cpf;
+        String rg;
+        String endereco;
+        String telefone;
+    }
+    ContaCorrente{
+        String numero;
+        double saldo;
+        Cliente cliente; // associacao entre Cliente e ContaCorrente
+    }
+    ContaPoupanca{
+        String numero;
+        double saldo;
+        Cliente cliente; // associacao entre Cliente e ContaPoupanca
+    }
+
+    Multiplicidade nas associacaoes
+    0 : zero ou mais
+    1 : um ou mais  
+    0..1 : zero ou um
+    1..* : um ou mais
+    1..n : um ou n
+    0..n : zero ou n
+
+    Agregacao
+    <> todo 
+    <> parte
+    Pedido {
+        pao
+        leite
+        cafe
+    }
+    Produto{
+        String nome;
+        double preco;
+    }
+
+    Composicao 
+    NotaFiscal{
+        Produto produto;
+        double preco;
+    }
+    ItemNotaFiscal{
+        Produto produto;
+        double preco;
+    }
+
+    implementacao de composicao no codigo 
+
+    Peca pode existir sem  o equipamento, mas o equipamento nao pode existir sem a peca.
+
+    class Equipamento{
+        String nome;
+        String tipo;
+        Peca peca; // composicao entre Equipamento e Peca
+    }
+    class Peca{
+        String nome;
+        String tipo;
+        Equipamento equipamento; // composicao entre Peca e Equipamento
+    }
+
+    class cliente{
+        String nome;
+        String cpf;
+        String rg;
+        String endereco;
+        String telefone;
+    }
+
+
+    uml conta
+    ~ numero : int 
+    ~ saldo : double
+    ~ limite : double
+    ~ tipo : String
+    cliente titular 
+
+    minhaConta.titular = c;
+    minhaConta.titular.nome = "João";
+    minhaConta.titular.cpf = "123.456.789-00";
+    minhaConta.titular.rg = "12.345.678-9";
+
+    + sacarLimite(valor : double) : void
+    + depositar(valor : double ) : void    
+    + transferir(valor : double, destino : Conta) : void
+
+
+    atributos unicos para cada classe
+    arrayList<Produto> listaProdutos = new ArrayList<Produto>();
+    Cliente cliente[] = new Cliente[10];
+    Produto produto[] = new Produto[10];
+
+    minhaConta.cliente[0] = new Cliente();
+    minhaConta.cliente[0].nome = "João";
+    minhaConta.cliente[0].cpf = "123.456.789-00";
+
+
+    Agregacao
+
+    Pedido -> Itens 
+
+    todo é sempre unico 
+
+    ArrayList<Produto> listaProdutos = new ArrayList<Produto>();
+    listaProdutos.add(new Produto("Produto 1", "Tipo 1", 10, 100.0));
+
+    ArrayList é dinamico, ou seja, pode aumentar e diminuir de tamanho, enquanto o array é fixo.
+
+
+    public class Pedido{
+        ArrayList<Item> listaItens = new ArrayList<Item>();
+        int codigo;
+
+        Pedido(int codigo){
+            this.codigo = codigo;
+        }
+        void adicionarItem(Item item){
+            listaItens.add(item);
+        }
+        void removerItem(Item item){
+            listaItens.remove(item);
+        }
+        void listarItens(){
+            for(Item item : listaItens){
+                System.out.println(item.nome + " - " + item.preco + " - " + item.quantidade);
+            }
+        }
+    }
+    public class Item{
+        String nome;
+        double preco;
+        int quantidade;
+
+        Item(String nome, double preco, int quantidade){
+            this.nome = nome;
+            this.preco = preco;
+            this.quantidade = quantidade;
+        }
+    }
+
+
+    public clas Window{
+        ArrayList<Frame> listaFrames = new ArrayList<JFrame>();
+        Window(String titual, string menu, String conteudo){
+            frames.add(new JFrame(titulo);
+            frames.add(new JMenuBar(menu));
+            frames.add(new JTextArea(conteudo));
+
+    }
+
+    public class Frame{
+        String descricao;
+        Frame (String descricao){
+            this.descricao = descricao;
+        }
+    }   
+
+    public class Principal{
+        public static void main(String[] args){
+            Window w = new Window("Titulo", "Menu", "Conteudo");
+            w.listaFrames.add(new Frame("Frame 1"));
+        }
+    }
+
+    Depedencia entre objetos
+
+    CaixaEletronico{
+        String numero;
+        double saldo;
+        Cliente cliente; // associacao entre Cliente e CaixaEletronico
+
+        void sacar(double valor, Conta conta){
+            if(conta.saldo >= valor){
+                conta.saldo -= valor;
+                saldo += valor;
+            }else{
+                System.out.println("Saldo insuficiente");
+            }
+        }
+    }
+
+    Heranca entre objetos
+    Conta{
+        String numero;
+        double saldo;
+        double limite;
+        String tipo;
+        Cliente cliente; // associacao entre Cliente e Conta
+    
+    }
+
+    ContaCorrente extends Conta{
+        double taxaSaque;
+        double taxaTransferencia;
+    
+        void sacar(double valor){
+            if(saldo >= valor + taxaSaque){
+                saldo -= valor + taxaSaque;
+            }else{
+                System.out.println("Saldo insuficiente");
+            }
+        }
+    }
+    ContaPoupanca extends Conta{
+        double rendimento;
+    
+        void renderJuros(){
+            saldo += saldo * rendimento;
+        }
+    }
+
+    ContaSalario extends Conta{
+        double salario;
+    
+        void depositarSalario(){
+            saldo += salario;
+        }
+    }
+
+    ContaUniversitaria extends Conta{
+        double limiteEstudantil;
+    
+        void sacar(double valor){
+            if(saldo + limiteEstudantil >= valor){
+                saldo -= valor;
+            }else{
+                System.out.println("Saldo insuficiente");
+            }
+        }
+    }
+    ContaConjunta extends Conta{
+        ArrayList<Cliente> clientes; // associacao entre Cliente e ContaConjunta
+    
+        void adicionarCliente(Cliente cliente){
+            clientes.add(cliente);
+        }
+    }
+
+    class Animal{
+        String nome;
+        String especie;
+        int idade;
+    
+        Animal(String nome, String especie, int idade){
+            this.nome = nome;
+            this.especie = especie;
+            this.idade = idade;
+        }
+    }
+    class Cachorro extends Animal{
+        String raca;
+    
+        Cachorro(String nome, String especie, int idade, String raca){
+            super(nome, especie, idade);
+            this.raca = raca;
+        }
+    }
+    class Gato extends Animal{
+        String raca;
+    
+        Gato(String nome, String especie, int idade, String raca){
+            super(nome, especie, idade);
+            this.raca = raca;
+        }
+    }
+
+
+    Forma{
+        String tipo;
+        double area;
+        double perimetro;
+    }
+    Circulo extends Forma{
+        double raio;
+    
+        Circulo(String tipo, double area, double perimetro, double raio){
+            super(tipo, area, perimetro);
+            this.raio = raio;
+        }
+    }
+    Quadrado extends Forma{
+        double lado;
+    
+        Quadrado(String tipo, double area, double perimetro, double lado){
+            super(tipo, area, perimetro);
+            this.lado = lado;
+        }
+    }
+    Retangulo extends Forma{
+        double base;
+        double altura;
+    
+        Retangulo(String tipo, double area, double perimetro, double base, double altura){
+            super(tipo, area, perimetro);
+            this.base = base;
+            this.altura = altura;
+        }
+    }       
+    Triangulo extends Forma{
+        double base;
+        double altura;
+    
+        Triangulo(String tipo, double area, double perimetro, double base, double altura){
+            super(tipo, area, perimetro);
+            this.base = base;
+            this.altura = altura;
+        }
+    }   
+
+    public class Main{
+        public static void main(String[] args){
+            Forma forma = new Forma("Circulo", 3.14, 6.28);
+            Circulo circulo = new Circulo("Circulo", 3.14, 6.28, 1.0);
+            Quadrado quadrado = new Quadrado("Quadrado", 4.0, 8.0, 2.0);
+            Retangulo retangulo = new Retangulo("Retangulo", 6.0, 12.0, 3.0, 2.0);
+            Triangulo triangulo = new Triangulo("Triangulo", 4.0, 8.0, 4.0, 2.0);
+        }
+    }
+
+    SuperClass X SubClass
+
+    loja{
+        String nome;
+        String endereco;
+        String telefone;
+    }
+    cliente{
+        String nome;
+        String cpf;
+        String rg;
+        String endereco;
+        String telefone;
+    }
+    fornecedor{
+        String nome;
+        String cnpj;
+        String endereco;
+        String telefone;
+    }
+    funcionario{
+        String nome;
+        String cpf;
+        String rg;
+        String endereco;
+        String telefone;
+    }
+
+    Heranca pra reaproveitar o codigo
+    cliente{}    
+    funcionario{}
+    fornecedor{}
+    loja{}
+
+    Pessoa{
+        String nome;
+        String endereco;
+        String telefone;
+    }
+    Pessoa extends Cliente{
+        String cpf;
+        String rg;
+        int estadoCivil;
+    }
+    Pessoa extends Juridica{
+        String cnpj;
+        String razaoSocial;
+    }
+    Pessoa extends Funcionario{
+        String matricula;
+        String cargo;
+    }
+    Pessoa extends Fornecedor{
+        String cnpj;
+        String razaoSocial;
+    }
+    Cliente extends Pessoa{
+        String cpf;
+        String rg;
+        int estadoCivil;
+    }
+
+    Heranca  / Associacao / Composicao / Agregacao
+
+    public class Aluno{ 
+        
+    Sbrescrevendo Metodos 
+
+
+//commit github
+
