@@ -1,0 +1,145 @@
+Reaproveitar codigo - tudo que a classe ja existente tem 
+
+
+class Universidade{
+    private String nome;
+    private String endereco;
+    private int numeroAlunos;
+    private int numeroProfessores;
+
+    public Universidade(String nome, String endereco, int numeroAlunos, int numeroProfessores) {
+        this.nome = nome;
+        this.endereco = endereco;
+        this.numeroAlunos = numeroAlunos;
+        this.numeroProfessores = numeroProfessores;
+    }
+
+    public void exibirInformacoes() {
+        System.out.println("Nome: " + nome);
+        System.out.println("Endereço: " + endereco);
+        System.out.println("Número de Alunos: " + numeroAlunos);
+        System.out.println("Número de Professores: " + numeroProfessores);
+    }
+}
+
+public class Aluno{
+    private String nome;
+    private String matricula;
+    private int idade;
+    private String curso;
+
+    public Aluno(String nome, String matricula, int idade, String curso) {
+        this.nome = nome;
+        this.matricula = matricula;
+        this.idade = idade;
+        this.curso = curso;
+    }
+
+    public void exibirInformacoes() {
+        System.out.println("Nome: " + nome);
+        System.out.println("Matrícula: " + matricula);
+        System.out.println("Idade: " + idade);
+        System.out.println("Curso: " + curso);
+    }
+}
+
+Superclasses {
+    Animal {
+        falar() {
+            System.out.println("O animal faz um som.");
+        }
+        comer() {
+            System.out.println("O animal está comendo.");
+        }
+    }
+}
+
+subclasse 
+    Cachorro extends Animal {
+        falar() {
+            System.out.println("O cachorro late.");
+        }
+        correr() {
+            System.out.println("O cachorro está correndo.");
+        }
+    }
+
+//uso o protected ao inves do private
+
+curso {
+    aluno{
+        al.curso.nome = "Matematica";
+    }
+}
+
+sobrecarga de metodos 
+Superclasses 
+    clas
+subclasse herda o metodo 
+
+public String fazerbarulho() {
+    return "Barulho do animal";//diferente do cachorro
+}
+class cao extends animal {
+    public String fazerbarulho() {
+        return "barulho do cao - latido";
+    }
+}
+
+referencia super
+this.receber = receber;
+
+na superclasse 
+
+Superclass 
+com o super eu chamo o metodo da superclasse
+return super.fazerbarulho() + " e " + this.fazerbarulho();
+}
+
+class Funcionnario{
+    String nome;
+    String cargo;
+    double salario;
+
+    public double bonificacao() {
+        return salario * 0.1; // 10% de bonificação
+    }
+    public double getSalario() {
+        return salario;
+    }
+    public void setSalario(double salario) {
+        this.salario = salario;
+    }
+}
+public class Gerente extenda Funcionnario{
+    private int senha;
+    public double bonificacao() {
+        return salario * 0.2; // 20% de bonificação
+
+    }
+    Gerente(String nome, double salario, int senha) {
+        super(nome, salario); // Chama o construtor da superclasse Funcionario
+        this.senha = senha;
+    }
+}
+public class TestaHeranca {
+    public static void main(String[] args) {
+        Funcionario f = new Funcionario();
+        f.setSalario(1000);
+        System.out.println("Bonificação do Funcionário: " + f.bonificacao());
+
+        Gerente g = new Gerente();
+        g.setSalario(2000);
+        System.out.println("Bonificação do Gerente: " + g.bonificacao());
+    }
+}
+
+construtores de subclasses
+
+Funcionario(String nome, double salario) {
+    this.nome = nome;
+    this.salario = salario;
+}
+
+
+Ger
