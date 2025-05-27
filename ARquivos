@@ -1,0 +1,174 @@
+a) Definição do problema e escopo do trabalho:
+Biblioteca
+Vai existir o estudante e o bibliotecário.
+O sistema terá que ter o registro de todos os livros da bilioteca para que o bibliotecário possa consultar.
+O sistema deve permitir que o estudante solicite o empréstimo de um livro. O bibliotecário deve poder receber o livro quando o estudate realizar uma devolução.
+Deve ser possível consultar os livros disponíveis por parte do estudante e do bibliotecário.
+
+
+b)Lista de requisitos (o que o sistema deve fazer):
+registrar livros;
+registrar estudantes;
+registrar bibliotecários;
+registrar empréstimos de livros;
+consultar livros disponíveis para empréstimo por parte do estudante e do bibliotecário;
+consultar empréstimos de livros por parte do bibliotecário;
+consultar prazo de devolução por parte do estudante e do bibliotecário;
+
+c) definição dos casos de uso com a representação dos atores e requisitos:
+
+O estudante pode consultar livros disponíveis, solicitar empréstimo de livro, consultar prazo de devolução, consultar os livros que tomou em empréstimo, devolver os livros que pegou em empréstimo.
+O bibliotecário pode registrar livros, registrar estudantes, registrar empréstimos de livros, consultar livros disponíveis, consultar empréstimos de livros, consultar prazo de devolução dos livros emprestados, imprimir a multa por atraso de devolução de livros, imprimir a cobrança por perda do livro.
+
+d) classes conceituais representando o problema, com relacionamentos entre elas (pelo menos 4 classes conceituais).
+// As classes conceituais podem ser:
+// Livro, Estudante, Bibliotecario, Empréstimo, Pessoa.
+
+
+
+
+
+import java.util.Random;
+
+public class DivisaoPorZeroSemTratamento {
+    public static int dividir(int numerador, int denominador) {
+        return numerador / denominador; // Possível divisão por zero
+    }
+
+    public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
+        System.out.print("Digite o numerador: ");
+        int numerador = s.nextInt();
+        System.out.print("Digite o denominador: ");
+        int denominador = s.nextInt();
+        int r = dividir(numerador, denominador);
+        System.out.println("Resultado: " + r);
+    }
+}
+
+public class DivisaoPorZeroComTratamento {
+    public static int dividir(int numerador, int denominador) {
+        if (denominador == 0) {
+            throw new IllegalArgumentException("Denominador não pode ser zero.");
+        }
+        return numerador / denominador;
+    }
+
+    public static void main(String[] args) {
+        do{
+            try {
+                int r = dividir(numerador, denominador);
+                Scanner s = new Scanner(System.in);
+                System.out.print("Digite o numerador: ");
+                int numerador = s.nextInt();
+                System.out.print("Digite o denominador: ");
+                int denominador = s.nextInt();
+                continuar = false;
+            } catch ( ArithmeticException e) {
+                System.out.println("Erro: " + e.getMessage());
+            } catch (InputMismatchException e) {
+                System.out.println("Erro: Entrada inválida. Por favor, insira números inteiros.");
+                s.next(); // Limpa o scanner
+            } catch (IllegalArgumentException e) {
+                System.out.println("Erro: " + e.getMessage());
+            } 
+        } while (continuar);
+        System.out.println("Resultado: " + r);
+    }
+}
+
+public class Arquivo{
+    public void mostrarArq(String nomeArquivo) throws FileNotFoundException {
+        FileInputStream stream = new FileInputStream(nomeArquivo);
+        InputStreamReader streamReader = new InputStreamReader(stream);
+        BufferedReader reader = new BufferedReader(streamReader);
+        String linha = null;
+        while ((linha = reader.readLine()) != null) {
+            System.out.println(linha);
+        }
+        reader.close();
+        streamReader.close();
+        stream.close();
+    }
+}
+
+publi class NomeInvalidoException extends RuntimeException {
+    public NomeInvalidoException(String mensagem) {
+        super(mensagem);
+    }
+}
+
+public class NomeSobrenome {
+    private String nome;
+    private String sobrenome;
+
+    public NomeSobrenome(String nome, String sobrenome) {
+        if (nome.length() == 0 || sobrenome.length() == 0) {
+            throw new NomeInvalidoException("Nome e sobrenome não podem ser vazios.");
+        }
+    }
+}
+
+public class Cadastro {
+    public static void main(String[] args) {
+        boolean continua = false;
+        do {
+            try
+            {
+            String nome = JOptionPane.showInputDialog("Entre com o nome:");
+            String sobrenome = JOptionPane.showInputDialog("Entre com o sobrenome:");
+            NomeSobrenome ns = new NomeSobrenome(nome,sobrenome);
+            continua = true;
+            }
+            catch (NomeInvalidoException e)
+            {
+                System.out.println(e.getMessage());
+            }
+        } while (continua == false);
+    }
+}
+
+public class NumeroAleatorio {
+    public static void main(String[] args) {
+        Random random = new Random();
+        int numero = random.nextInt(100); // Gera um número aleatório entre 0 e 99
+        System.out.println("Número aleatório: " + numero);
+    }
+}
+
+ File diretorio = new File("c:\\novo"); /* Cria objetos com */
+ diretorio.mkdir(); /* referência a arquivos */
+ File subdir1 = new File( diretorio, "subdir1"); /* ou diretórios e cria */
+ subdir1. mkdir(); /* diretórios ou subdiretorios */
+ File subdir2 = new File( diretorio, "subdir2"); /* com os nomes */
+ subdir2. mkdir(); /* definidos */
+ /* Cria objeto com referência ao arquivo “arquivoVazio.txt” */
+ File arquivo = new File( diretorio, "arquivoVazio.txt");
+ /* Abre o arquivo para gravação */
+ FileWriter f = new FileWriter(arquivo);
+ f.close(); /* fecha o arquivo */
+ /* Recupera a lista de arquivos do diretorio */
+ String[] arquivos = diretorio.list();
+ /* mostra o caminho absoluto de cada arquivo da lista */
+ for (int i =0;i<arquivos.length; i++) {
+ File filho = new File( diretorio, arquivos[ i]);
+ System. out. println(filho.getAbsolutePath());
+ }
+
+ class TestaEntrada {
+     public static void main(String[] args) throws IOException {
+         InputStream is =  new FileInputStream("entrada.txt");
+        InputStreamReader isr = new InputStreamReader(is);
+        int c = isr.read();
+        while (c != -1) {
+            System.out.print((char) c);
+            c = isr.read();
+        }
+
+        BufferedReader br = new BufferedReader(isr);
+        String s = br.readLine();
+        while (s != null) {
+            System.out.println(s);
+            s = br.readLine();
+        }
+
